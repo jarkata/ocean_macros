@@ -50,7 +50,7 @@ pub fn to_ordered_vec(_attr: TokenStream, item: TokenStream) -> TokenStream {
         }
     };
     info!("生成的代码:{}",expanded);
-    eprintln!("Input expanded: {:?}", expanded); // 打印输入的结构体信息
+    eprintln!("生成的代码: {:?}", TokenStream::from(expanded.clone()).to_string()); // 打印输入的结构体信息
     // 返回生成的代码
     TokenStream::from(expanded)
 }
