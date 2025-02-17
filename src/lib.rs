@@ -1,3 +1,4 @@
+use log::info;
 use proc_macro::TokenStream;
 use quote::quote;
 use syn::{parse_macro_input, Data, DeriveInput, Fields};
@@ -12,7 +13,7 @@ pub fn to_ordered_vec(_attr: TokenStream, item: TokenStream) -> TokenStream {
 
     // 获取结构体的名称
     let struct_name = &input.ident;
-    println!("结构体的名称:{}", struct_name);
+    info!("结构体的名称:{}",struct_name);
     // 检查是否为结构体
     let fields = match &input.data {
         Data::Struct(data_struct) => match &data_struct.fields {
@@ -22,7 +23,7 @@ pub fn to_ordered_vec(_attr: TokenStream, item: TokenStream) -> TokenStream {
         _ => panic!("Only structs are supported"),
     };
 
-    println!("字段名称:{}", fields);
+    info!("字段名称:{}",fields);
     // 提取字段名称
     let field_names: Vec<_> = fields
         .iter()
@@ -46,7 +47,7 @@ pub fn to_ordered_vec(_attr: TokenStream, item: TokenStream) -> TokenStream {
             }
         }
     };
-    println!("生成的代码:{}", expanded);
+    info!("生成的代码:{}",expanded);
     // 返回生成的代码
     TokenStream::from(expanded)
 }
