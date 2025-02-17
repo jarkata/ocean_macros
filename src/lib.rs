@@ -45,7 +45,7 @@ pub fn to_ordered_vec(_attr: TokenStream, item: TokenStream) -> TokenStream {
             }
         }
     };
-
+    println!("生成的代码:{}", expanded);
     // 返回生成的代码
     TokenStream::from(expanded)
 }
