@@ -12,7 +12,7 @@ pub fn to_ordered_vec(_attr: TokenStream, item: TokenStream) -> TokenStream {
 
     // 获取结构体的名称
     let struct_name = &input.ident;
-
+    println!("结构体的名称:{}", struct_name);
     // 检查是否为结构体
     let fields = match &input.data {
         Data::Struct(data_struct) => match &data_struct.fields {
