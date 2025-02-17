@@ -1,6 +1,7 @@
 use log::info;
 use proc_macro::TokenStream;
 use quote::quote;
+use serde_json::json;
 use syn::{parse_macro_input, Data, DeriveInput, Fields};
 
 /**
@@ -23,7 +24,7 @@ pub fn to_ordered_vec(_attr: TokenStream, item: TokenStream) -> TokenStream {
         _ => panic!("Only structs are supported"),
     };
 
-    info!("字段名称:{}",fields);
+    info!("字段名称:{}",fields.pairs());
     // 提取字段名称
     let field_names: Vec<_> = fields
         .iter()
