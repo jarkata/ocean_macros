@@ -15,6 +15,7 @@ pub fn to_ordered_vec(_attr: TokenStream, item: TokenStream) -> TokenStream {
     // 获取结构体的名称
     let struct_name = &input.ident;
     info!("结构体的名称:{}",struct_name);
+    eprintln!("Input struct: {:?}", struct_name); // 打印输入的结构体信息
     // 检查是否为结构体
     let fields = match &input.data {
         Data::Struct(data_struct) => match &data_struct.fields {
@@ -49,6 +50,7 @@ pub fn to_ordered_vec(_attr: TokenStream, item: TokenStream) -> TokenStream {
         }
     };
     info!("生成的代码:{}",expanded);
+    eprintln!("Input expanded: {:?}", expanded); // 打印输入的结构体信息
     // 返回生成的代码
     TokenStream::from(expanded)
 }
