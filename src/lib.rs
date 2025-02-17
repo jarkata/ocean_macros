@@ -24,7 +24,7 @@ pub fn to_ordered_vec(_attr: TokenStream, item: TokenStream) -> TokenStream {
         _ => panic!("Only structs are supported"),
     };
 
-    info!("字段名称:{}",fields.pairs());
+    info!("字段名称:{}",fields.len());
     // 提取字段名称
     let field_names: Vec<_> = fields
         .iter()
