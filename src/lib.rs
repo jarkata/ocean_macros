@@ -14,6 +14,12 @@ pub fn to_ordered_vec(attr: TokenStream, item: TokenStream) -> TokenStream {
     ordered_fields(item)
 }
 
+#[proc_macro_attribute]
+pub fn sql_column(attr: TokenStream, item: TokenStream) -> TokenStream {
+    eprintln!("属性列表:{}", attr.clone());
+    item
+}
+
 #[proc_macro_derive(fields_list, attributes(columns))]
 pub fn to_fix_field_list(item: TokenStream) -> TokenStream {
     list_fix_fields(item)
