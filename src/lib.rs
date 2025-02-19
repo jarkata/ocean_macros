@@ -1,7 +1,7 @@
 mod field_ordered;
 mod sql_columns;
 
-use crate::field_ordered::ordered_fields;
+use crate::field_ordered::{list_fix_fields, ordered_fields};
 use crate::sql_columns::make_all_columns;
 use proc_macro::TokenStream;
 
@@ -12,6 +12,11 @@ use proc_macro::TokenStream;
 pub fn to_ordered_vec(attr: TokenStream, item: TokenStream) -> TokenStream {
     eprintln!("属性列表:{}", attr.clone());
     ordered_fields(item)
+}
+
+#[proc_macro_derive(fields_list, attributes(columns))]
+pub fn to_fix_field_list(item: TokenStream) -> TokenStream {
+    list_fix_fields(item)
 }
 
 #[proc_macro_attribute]
