@@ -1,5 +1,5 @@
 use proc_macro::TokenStream;
-use quote::quote;
+use quote::{quote, ToTokens};
 use syn::{parse_macro_input, Data, DeriveInput, Fields};
 
 /**
@@ -31,9 +31,9 @@ pub fn list_fix_fields(item: TokenStream) -> TokenStream {
                 eprintln!("field_name: {:?}", field_name); // 打印输入的结构体信息
                 return quote! { self.#field_name.clone() };
             } else {
-                let field_name = attrs.unwrap();
+                let field_name = attrs.unwrap().to_token_stream();
                 eprintln!("field_name: {:?}", field_name); // 打印输入的结构体信息
-                return quote! { field_name.to_string() };
+                return quote! {   };
             }
         })
         .collect();
