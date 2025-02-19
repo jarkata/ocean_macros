@@ -20,7 +20,7 @@ pub fn sql_column(attr: TokenStream, item: TokenStream) -> TokenStream {
     item
 }
 
-#[proc_macro_derive(fields_list, attributes(columns))]
+#[proc_macro_derive(fields_list, attributes(field_name))]
 pub fn to_fix_field_list(item: TokenStream) -> TokenStream {
     list_fix_fields(item)
 }
