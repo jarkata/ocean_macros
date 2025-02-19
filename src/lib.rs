@@ -20,7 +20,7 @@ pub fn to_ordered_vec(attr: TokenStream, item: TokenStream) -> TokenStream {
 //     item
 // }
 
-#[proc_macro_derive(fields_list, attributes(db_field_name))]
+#[proc_macro_derive(GetFieldList, attributes(db_field_name))]
 pub fn to_fix_field_list(item: TokenStream) -> TokenStream {
     list_fix_fields(item)
 }

@@ -25,8 +25,16 @@ pub fn list_fix_fields(item: TokenStream) -> TokenStream {
     let field_names: Vec<_> = fields
         .iter()
         .map(|field| {
-            let field_name = field.ident.as_ref().unwrap();
-            quote! { self.#field_name.clone() }
+            let attrs = field.attrs.first();
+            if attrs.is_none() {
+                let field_name = field.ident.as_ref().unwrap();
+                eprintln!("field_name: {:?}", field_name); // 打印输入的结构体信息
+                return quote! { self.#field_name.clone() };
+            } else {
+                let field_name = attrs.unwrap();
+                eprintln!("field_name: {:?}", field_name); // 打印输入的结构体信息
+                return quote! { field_name.to_string() };
+            }
         })
         .collect();
 
