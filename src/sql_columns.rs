@@ -2,7 +2,7 @@ use proc_macro::TokenStream;
 use quote::quote;
 use syn::{parse_macro_input, Data, DeriveInput, Fields};
 
-pub fn all_columns(_attr: TokenStream, item: TokenStream) -> TokenStream {
+pub fn make_all_columns(_attr: TokenStream, item: TokenStream) -> TokenStream {
     // 解析输入的结构体
     let input = parse_macro_input!(item as DeriveInput);
 
