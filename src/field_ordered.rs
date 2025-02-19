@@ -33,8 +33,7 @@ pub fn ordered_fields(item: TokenStream) -> TokenStream {
     // 生成代码
     let expanded = quote! {
         // 原始结构体定义
-        // #input
-
+        #input
         // 为结构体实现方法
         impl #struct_name {
             pub fn to_ordered_vec(&self) -> Vec<serde_json::Value> {
