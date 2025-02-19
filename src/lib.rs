@@ -15,7 +15,7 @@ pub fn to_ordered_vec(attr: TokenStream, item: TokenStream) -> TokenStream {
 }
 
 #[proc_macro_attribute]
-pub fn sql_column(attr: TokenStream, item: TokenStream) -> TokenStream {
+pub fn db_field_name(attr: TokenStream, item: TokenStream) -> TokenStream {
     eprintln!("属性列表:{}", attr.clone());
     item
 }
