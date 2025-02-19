@@ -17,7 +17,7 @@ pub fn make_all_columns(_attr: TokenStream, item: TokenStream) -> TokenStream {
         },
         _ => panic!("Only structs are supported"),
     };
-    eprintln!("结构体名称: {:?}", fields); // 打印输入的结构体信息
+    eprintln!("结构字段名: {:?}", fields); // 打印输入的结构体信息
     // 提取字段名称
     let field_names: Vec<_> = fields
         .iter()
