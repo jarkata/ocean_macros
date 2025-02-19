@@ -1,4 +1,5 @@
 mod field_ordered;
+mod sql_columns;
 
 use crate::field_ordered::ordered_fields;
 use proc_macro::TokenStream;
