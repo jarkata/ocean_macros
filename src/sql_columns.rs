@@ -1,6 +1,7 @@
+use crate::utils::utils::{get_all_fields, get_fields_stream};
 use proc_macro::TokenStream;
 use quote::quote;
-use syn::{parse_macro_input, Data, DeriveInput, Fields};
+use syn::{parse_macro_input, DeriveInput};
 
 pub fn make_all_columns(_attr: TokenStream, item: TokenStream) -> TokenStream {
     // 解析输入的结构体
@@ -10,22 +11,11 @@ pub fn make_all_columns(_attr: TokenStream, item: TokenStream) -> TokenStream {
     let struct_name = &input.ident;
     eprintln!("结构体名称: {:?}", struct_name); // 打印输入的结构体信息
     // 检查是否为结构体
-    let fields = match &input.data {
-        Data::Struct(data_struct) => match &data_struct.fields {
-            Fields::Named(fields_named) => &fields_named.named,
-            _ => panic!("Only structs with named fields are supported"),
-        },
-        _ => panic!("Only structs are supported"),
-    };
-    eprintln!("结构字段名: {:?}", fields); // 打印输入的结构体信息
+    let fields = get_all_fields(&input);
+
+    // eprintln!("结构字段名: {:?}", fields); // 打印输入的结构体信息
     // 提取字段名称
-    let field_names: Vec<_> = fields
-        .iter()
-        .map(|field| {
-            let field_name = field.ident.as_ref().unwrap();
-            quote! { self.#field_name.clone() }
-        })
-        .collect();
+    let field_names = get_fields_stream(fields);
     eprintln!("字段名: {:?}", field_names);
     // 生成代码
     let expanded = quote! {
